@@ -29,8 +29,6 @@ def findLCA(root, n1, n2):
         return -1
 
     i = 0
-    while(i < len(path1) and i < len(path2)):
-        if path1[i] != path2[i]:
-            break
+    while(i < len(path1) and i < len(path2) and (path1[i] == path2[i])):
         i += 1
     return path1[i-1]
