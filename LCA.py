@@ -25,6 +25,7 @@ def findLCA(root, key_one, key_two):
     path_one = list()
     path_two = list()
 
+    # if no path is found, return -1
     if(not findPath(root, path_one, key_one) or not findPath(root, path_two, key_two)):
         return -1
 

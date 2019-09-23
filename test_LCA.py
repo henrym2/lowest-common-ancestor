@@ -41,3 +41,8 @@ def test_random_height_5():
     assert LCA.findLCA(root, 2, 22) is 15
     assert LCA.findLCA(root, 26, 56) is 31
     assert LCA.findLCA(root, 17, 25) is 23
+
+def test_no_path():
+    root = bst(height=3, is_perfect=True)
+    assert LCA.findLCA(root, 99, 99) is -1
+    assert LCA.findLCA(root, 15, 11) is -1
