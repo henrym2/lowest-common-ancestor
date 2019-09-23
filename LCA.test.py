@@ -1,1 +1,0 @@
-# Lowest common ancestor test - Matthew Henry
