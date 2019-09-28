@@ -1,7 +1,7 @@
 # Lowest common ancestor - Matthew Henry
 from binarytree import bst, Node
 
-def findPath(root, path, key):
+def find_path(root, path, key):
     if root is None:
         return False
     
@@ -10,8 +10,8 @@ def findPath(root, path, key):
     if root.value == key:
         return True
 
-    if (root.left != None and findPath(root.left, path, key)) or (
-        root.right != None and findPath(root.right, path, key)
+    if (root.left != None and find_path(root.left, path, key)) or (
+        root.right != None and find_path(root.right, path, key)
         ):
         return True
 
@@ -21,12 +21,12 @@ def findPath(root, path, key):
     path.pop()
     return False
 
-def findLCA(root, key_one, key_two):
+def find_lca(root, key_one, key_two):
     path_one = list()
     path_two = list()
 
     # if no path is found, return -1
-    if(not findPath(root, path_one, key_one) or not findPath(root, path_two, key_two)):
+    if(not find_path(root, path_one, key_one) or not find_path(root, path_two, key_two)):
         return -1
 
     i = 0
@@ -42,7 +42,7 @@ class DAGnode:
         self.pred = []
         self.succ = []
 
-def findLCADAG(root, node_1, node_2):
+def find_lca_dag(root, node_1, node_2):
     if root is None:
         return None
     if root.key == node_1 or root.key == node_2:
@@ -57,9 +57,9 @@ def findLCADAG(root, node_1, node_2):
     
     if lca == []:
         if node_1.key > node_2.key:
-            lca.append(findLCADAG(root, node_1.pred[0], node_2))
+            lca.append(find_lca_dag(root, node_1.pred[0], node_2))
         else:
-            lca.append(findLCADAG(root, node_1, node_2.pred[0]))
+            lca.append(find_lca_dag(root, node_1, node_2.pred[0]))
 
     return max(lca)
 
@@ -80,4 +80,4 @@ r4.pred = [r2,r3,root]
 r5.pred = [r3,r4,root]
 r6.pred = [r4]
 
-print(findLCADAG(root, root.key, r3.key).key)
+print(find_lca_dag(root, root.key, r3.key).key)
