@@ -51,24 +51,31 @@ def test_no_path():
 # ------------- DAG -----------------#
 #             Init DAG               #
 
-def construct_DAG():
-    root = DAGnode(1)
-    r2 = DAGnode(2)
-    r3 = DAGnode(3)
-    r4 = DAGnode(4)
-    r5 = DAGnode(5)
-    r6 = DAGnode(6)
-    root.succ = [r2,r3,r4,r5]
-    r2.succ = [r4]
-    r2.pred = [root]
-    r3.succ = [r4, r5]
-    r3.pred = [root]
-    r4.succ = [r5]
-    r4.pred = [r2,r3,root]
-    r5.pred = [r3,r4,root]
-    r6.pred = [r4]
-    return root
+root = DAGnode(1)
+r2 = DAGnode(2)
+r3 = DAGnode(3)
+r4 = DAGnode(4)
+r5 = DAGnode(5)
+r6 = DAGnode(6)
+root.succ = [r2,r3,r4,r5]
+r2.succ = [r4]
+r2.pred = [root]
+r3.succ = [r4, r5]
+r3.pred = [root]
+r4.succ = [r5]
+r4.pred = [r2,r3,root]
+r5.pred = [r3,r4,root]
+r6.pred = [r4]
+
 
 def test_dag_1_3():
-    root = construct_DAG()
     assert LCA.find_lca_dag(root, 1, 3).key is 1
+
+def test_dag_none():
+    assert LCA.find_lca_dag(None, None, None) is None
+
+def test_dag_same():
+    assert LCA.find_lca_dag(root, r6, r6) is 6
+
+def test_dag_6_4():
+    assert LCA.find_lca_dag(root, r6, r4) is 4
