@@ -1,5 +1,6 @@
 # Lowest common ancestor test - Matthew Henry
 import LCA
+from LCA import DAGnode
 
 from binarytree import Node, bst
 import pytest
@@ -46,3 +47,28 @@ def test_no_path():
     root = bst(height=3, is_perfect=True)
     assert LCA.find_lca(root, 99, 99) is -1
     assert LCA.find_lca(root, 15, 11) is -1
+
+# ------------- DAG -----------------#
+#             Init DAG               #
+
+def construct_DAG():
+    root = DAGnode(1)
+    r2 = DAGnode(2)
+    r3 = DAGnode(3)
+    r4 = DAGnode(4)
+    r5 = DAGnode(5)
+    r6 = DAGnode(6)
+    root.succ = [r2,r3,r4,r5]
+    r2.succ = [r4]
+    r2.pred = [root]
+    r3.succ = [r4, r5]
+    r3.pred = [root]
+    r4.succ = [r5]
+    r4.pred = [r2,r3,root]
+    r5.pred = [r3,r4,root]
+    r6.pred = [r4]
+    return root
+
+def test_dag_1_3():
+    root = construct_DAG()
+    assert LCA.find_lca_dag(root, 1, 3).key is 1

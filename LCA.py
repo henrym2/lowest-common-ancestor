@@ -62,22 +62,3 @@ def find_lca_dag(root, node_1, node_2):
             lca.append(find_lca_dag(root, node_1, node_2.pred[0]))
 
     return max(lca)
-
-
-root = DAGnode(1)
-r2 = DAGnode(2)
-r3 = DAGnode(3)
-r4 = DAGnode(4)
-r5 = DAGnode(5)
-r6 = DAGnode(6)
-root.succ = [r2,r3,r4,r5]
-r2.succ = [r4]
-r2.pred = [root]
-r3.succ = [r4, r5]
-r3.pred = [root]
-r4.succ = [r5]
-r4.pred = [r2,r3,root]
-r5.pred = [r3,r4,root]
-r6.pred = [r4]
-
-print(find_lca_dag(root, root.key, r3.key).key)
