@@ -1,4 +1,6 @@
 # Lowest common ancestor - Matthew Henry
+# Code modified from Geeks2Geeks tutorial on LCA in b-tree
+# binary tree module from python used for quick development
 from binarytree import bst, Node
 
 def find_path(root, path, key):
@@ -25,7 +27,7 @@ def find_lca(root, key_one, key_two):
     path_one = list()
     path_two = list()
 
-    # if no path is found, return -1
+    # if no path is found between the two nodes return -1
     if(not find_path(root, path_one, key_one) or not find_path(root, path_two, key_two)):
         return -1
 
@@ -42,10 +44,13 @@ class DAGnode:
         self.pred = []
         self.succ = []
 
-def find_lca_dag(root, node_1, node_2):
+#BFS between two nodes method
+def find_lca_dag(root: DAGnode,  node_1: DAGnode, node_2: DAGnode):
+    if type(root) != DAGnode or type(node_1) != DAGnode or type(node_2) != DAGnode:
+        return None
     if root is None:
         return None
-    if root.key == node_1 or root.key == node_2:
+    if root == node_1 or root == node_2:
         return root
     if node_1 == node_2:
         return node_1.key

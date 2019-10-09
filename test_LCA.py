@@ -69,7 +69,7 @@ r6.pred = [r4]
 
 
 def test_dag_1_3():
-    assert LCA.find_lca_dag(root, 1, 3).key is 1
+    assert LCA.find_lca_dag(root, root, r3).key is 1
 
 def test_dag_none():
     assert LCA.find_lca_dag(None, None, None) is None
@@ -79,3 +79,6 @@ def test_dag_same():
 
 def test_dag_6_4():
     assert LCA.find_lca_dag(root, r6, r4) is 4
+
+def test_not_in_tree():
+    assert LCA.find_lca_dag(root, 9, 99) is None
