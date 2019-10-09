@@ -82,3 +82,7 @@ def test_dag_6_4():
 
 def test_not_in_tree():
     assert LCA.find_lca_dag(root, 9, 99) is None
+
+def test_dag_types():
+    assert LCA.find_lca_dag(0, "A", "C") is None
+    assert LCA.find_lca_dag("A", type, 9) is None
