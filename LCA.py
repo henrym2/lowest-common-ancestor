@@ -1,7 +1,7 @@
 # Lowest common ancestor - Matthew Henry
 from binarytree import bst, Node
 
-def findPath(root, path, key):
+def findPath(root: bst, path: list, key: int):
     if root is None:
         return False
     
@@ -21,7 +21,7 @@ def findPath(root, path, key):
     path.pop()
     return False
 
-def findLCA(root, key_one, key_two):
+def findLCA(root: Node, key_one: int, key_two: int):
     path_one = list()
     path_two = list()
 
