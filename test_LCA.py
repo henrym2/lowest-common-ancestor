@@ -5,6 +5,11 @@ from LCA import DAGnode
 from binarytree import Node, bst
 import pytest
 
+def test_type():
+    assert LCA.findLCA(0,0,0) is -1
+    root = Node(1)
+    assert LCA.findLCA(root, "A", 0) is -1
+    assert LCA.findLCA(root, 0, "A") is -1
 
 def test_single_node_tree():
     root = Node(1)

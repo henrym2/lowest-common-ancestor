@@ -3,7 +3,10 @@
 # binary tree module from python used for quick development
 from binarytree import bst, Node
 
-def find_path(root, path, key):
+
+def find_Path(root: Node, path: list, key: int):
+    if type(root) != Node or type(path) != list or type(key) != int:
+        return False
     if root is None:
         return False
     
@@ -23,7 +26,10 @@ def find_path(root, path, key):
     path.pop()
     return False
 
-def find_lca(root, key_one, key_two):
+def find_LCA(root: Node, key_one: int, key_two: int):
+    if type(root) != Node or type(key_one) != int or type(key_two) != int:
+        return -1
+
     path_one = list()
     path_two = list()
 
